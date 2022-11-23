@@ -1,21 +1,25 @@
 ---
-export interface Props {
-  stylesheet?: string
-}
-
-const { stylesheet } = Astro.props
+import '~/styles/tailwind.css'
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pro Tailwind Tutorials</title>
-    {stylesheet && <link rel="stylesheet" href={stylesheet} />}
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Multi-style components with Tailwind CSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin="true" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <slot />
+  <body class="antialiased">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <slot />
+    </div>
   </body>
 </html>

@@ -1,0 +1,33 @@
+---
+import GroupDisplay from '~components/group-display.astro'
+import HardcodedButtons from '~components/hardcoded-buttons.astro'
+import Button from './button'
+---
+
+<HardcodedButtons />
+
+<hr class="mt-12" />
+
+<section class="my-12">
+  <h2 class="text-2xl font-semibold">Multi-style <code>Button</code> component</h2>
+  <p class="mt-2">Now compose the "impact" styles with the existing base styles...</p>
+  <div class="mt-4 space-y-4">
+    <GroupDisplay title="Impact">
+      <Button>Bold</Button>
+      <Button impact="light">Light</Button>
+      <Button impact="none">None</Button>
+    </GroupDisplay>
+
+    <GroupDisplay title="Size">
+      <Button size="large">Large</Button>
+      <Button>Medium</Button>
+      <Button size="small">Small</Button>
+    </GroupDisplay>
+
+    <GroupDisplay title="Shape">
+      <Button shape="square">Square</Button>
+      <Button>Rounded</Button>
+      <Button shape="pill">Pill button</Button>
+    </GroupDisplay>
+  </div>
+</section>
