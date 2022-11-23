@@ -1,0 +1,32 @@
+---
+import GroupDisplay from '~components/group-display.astro'
+import HardcodedButtons from '~components/hardcoded-buttons-with-tone.astro'
+import Button from './button'
+---
+
+<HardcodedButtons />
+
+<hr class="mt-12" />
+
+<section class="my-12">
+  <h2 class="text-2xl font-semibold">Multi-style <code>Button</code> component</h2>
+  <div class="mt-4 space-y-4">
+    <GroupDisplay title="Default tone">
+      <Button>Bold</Button>
+      <Button impact="light">Light</Button>
+      <Button impact="none">None</Button>
+    </GroupDisplay>
+
+    <GroupDisplay title="Danger tone">
+      <Button tone="danger">Bold</Button>
+      <Button tone="danger" impact="light">Light</Button>
+      <Button tone="danger" impact="none">None</Button>
+    </GroupDisplay>
+
+    <GroupDisplay title="Success tone">
+      <Button tone="success">Bold</Button>
+      <Button tone="success" impact="light">Light</Button>
+      <Button tone="success" impact="none">None</Button>
+    </GroupDisplay>
+  </div>
+</section>
