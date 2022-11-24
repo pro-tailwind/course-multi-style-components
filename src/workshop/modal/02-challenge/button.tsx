@@ -4,21 +4,18 @@ import { cx } from '~/utils'
 // ------------------------------
 // Prop types
 // ------------------------------
-type ButtonProps = {
-  impact?: 'bold' | 'light' | 'none'
+export type ButtonProps = {
   size?: 'small' | 'medium' | 'large'
-  shape?: 'square' | 'rounded' | 'pill'
-  /*
-    Surprise! We've got an extra prop type now
-  */
+  impact?: 'bold' | 'light' | 'none'
   tone?: 'default' | 'danger' | 'success'
+  shape?: 'square' | 'rounded' | 'pill'
 }
 
 // ------------------------------
 // Tailwind Classes lookup directory
 // ------------------------------
 const baseClasses =
-  'font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50'
+  'font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50'
 
 const impactClasses: Record<ButtonProps['tone'], Record<ButtonProps['impact'], string>> = {
   default: {
@@ -40,24 +37,24 @@ const impactClasses: Record<ButtonProps['tone'], Record<ButtonProps['impact'], s
 
 const sizeClasses: Record<ButtonProps['size'], string> = {
   small: 'px-3 py-1 text-sm',
-  medium: 'px-5 py-2 text-base',
+  medium: 'px-5 py-2',
   large: 'px-7 py-2.5 text-lg',
 }
 
 const shapeClasses: Record<ButtonProps['shape'], string> = {
-  square: 'rounded-none',
+  square: '',
   rounded: 'rounded',
   pill: 'rounded-full',
 }
 
 // ------------------------------
-// Component definition (with default variants)
+// Main component
 // ------------------------------
 const Button = ({
   size = 'medium',
   impact = 'bold',
-  shape = 'rounded',
   tone = 'default',
+  shape = 'rounded',
   ...restProps
 }: ButtonProps & React.ComponentProps<'button'>) => {
   return (
