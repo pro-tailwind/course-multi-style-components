@@ -9,16 +9,34 @@ import Button from '../button'
 type ModalProps = {
   open: boolean
   onClose: () => void
+  /*
+    ------------------------------
+    We've added new props for our Modal title, 
+    body (children) and action buttons.
+    ------------------------------
+  */
+  title: string
+  children: React.ReactNode
+  actions: {
+    cancel?: {
+      label: string
+      action: () => void
+    }
+    confirm: {
+      label: string
+      action: () => void
+    }
+  }
 }
 
 // ---------------------------------
 // Main Component
 // ---------------------------------
-export default function Modal({ open, onClose }: ModalProps) {
+export default function Modal({ open, onClose, title, children, actions }: ModalProps) {
   /*  
     ------------------------------
-    TODO: Use Headless UI's `Dialog` component to improve
-    the modal's usability and accessibility.
+    TODO: Update the code below to use the title, children 
+    and action props instead of having these "hardcoded".
     ------------------------------
   */
   return (
@@ -31,9 +49,12 @@ export default function Modal({ open, onClose }: ModalProps) {
           <Dialog.Panel className="relative w-full overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 sm:max-w-lg">
             <div className="bg-white p-4 sm:p-6">
               <div className="text-center sm:text-left">
+                {/* Title */}
                 <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
                   Confirm subscription
                 </Dialog.Title>
+
+                {/* Body */}
                 <div className="mt-4">
                   <p className="text-slate-500">
                     You're about to confirm your{' '}
@@ -46,6 +67,7 @@ export default function Modal({ open, onClose }: ModalProps) {
                 </div>
               </div>
             </div>
+
             {/* Action buttons */}
             <div className="flex flex-col gap-2 border-t p-4 sm:flex-row-reverse">
               <Button onClick={onClose}>Confirm</Button>
