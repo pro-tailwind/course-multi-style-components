@@ -15,7 +15,7 @@ export default function ModalDemo() {
       `onClose` prop.
       ------------------------------
     */}
-      {isOpen && <Modal open={isOpen} onClose={() => setIsOpen(false)} />}
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} />
 
       {/* 
       ------------------------------
@@ -25,7 +25,7 @@ export default function ModalDemo() {
       ------------------------------
     */}
 
-      <div className="prose prose-slate lg:prose-lg my-12 mx-auto">
+      <div className="prose prose-slate my-12 mx-auto lg:prose-lg">
         {/* The modal toggle */}
         <Button impact="light" onClick={() => setIsOpen(true)}>
           Open dialog

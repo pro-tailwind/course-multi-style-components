@@ -24,7 +24,11 @@ const baseClasses =
   mirror the prop value.
   ------------------------------
 */
-const impactClasses: Record<ButtonProps['impact'], string> = {}
+const impactClasses: Record<ButtonProps['impact'], string> = {
+  bold: 'bg-indigo-500 text-white shadow-md hover:bg-indigo-600',
+  light: 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200',
+  none: 'bg-transparent text-indigo-700 hover:bg-indigo-50',
+}
 
 // ------------------------------
 // Component definition (with default variants)
@@ -46,7 +50,7 @@ const Button = ({
         a series of comma separated inputs!
         ------------------------------
       */
-      className={baseClasses}
+      className={cx(baseClasses, impactClasses[impact])}
     />
   )
 }

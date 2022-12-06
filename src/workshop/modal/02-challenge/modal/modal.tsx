@@ -51,29 +51,22 @@ export default function Modal({ open, onClose, title, children, actions }: Modal
               <div className="text-center sm:text-left">
                 {/* Title */}
                 <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
-                  Confirm subscription
+                  {title}
                 </Dialog.Title>
 
                 {/* Body */}
-                <div className="mt-4">
-                  <p className="text-slate-500">
-                    You're about to confirm your{' '}
-                    <a className="text-indigo-600 underline hover:text-indigo-500" href="#">
-                      membership subscription
-                    </a>
-                    . Your account will be billed for a one-year membership. We just want to make
-                    sure you understand that.
-                  </p>
-                </div>
+                {children}
               </div>
             </div>
 
             {/* Action buttons */}
             <div className="flex flex-col gap-2 border-t p-4 sm:flex-row-reverse">
-              <Button onClick={onClose}>Confirm</Button>
-              <Button impact="none" onClick={onClose}>
-                Cancel
-              </Button>
+              <Button onClick={actions.confirm.action}>{actions.confirm.label}</Button>
+              {actions.cancel && (
+                <Button impact="none" onClick={actions.cancel.action}>
+                  {actions.cancel.label}
+                </Button>
+              )}
             </div>
           </Dialog.Panel>
         </div>

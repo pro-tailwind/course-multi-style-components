@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Dialog } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 
 import { cx } from '~/utils'
 import Button, { ButtonProps } from '../button'
@@ -23,17 +23,6 @@ type ModalProps = {
     }
   }
   size?: 'small' | 'medium' | 'large'
-  /* 
-    ------------------------------
-    Once again, a new prop! This time, it's called `tone`.
-    It reflects the 3 tones available on the `Button`
-    component we created earlier in this workshop.
-
-    Notice we're importing the `ButtonProps` type
-    from the `Button` component file, to make
-    sure the possible values are the same!
-    ------------------------------
-  */
   tone?: ButtonProps['tone']
 }
 
@@ -46,14 +35,6 @@ const sizeClasses: Record<ModalProps['size'], string> = {
   large: 'sm:max-w-2xl',
 }
 
-/* 
-  ------------------------------
-  TODO: Populate the `toneClasses` object below with 
-  the appropriate keys. Figure out where to use
-  these dynamic classes, so the modal shows
-  the correct `tone` styles.
-  ------------------------------
-*/
 const toneClasses: Record<ModalProps['tone'], string> = {
   default: 'bg-indigo-300',
   danger: 'bg-red-300',
@@ -74,16 +55,25 @@ export default function Modal({
 }: ModalProps) {
   /* 
     ------------------------------
-    NOTE: You'll need to do more than just use the 
-    `toneClasses` object for this challenge...
+    TODO: Add transitions using Headless UI's `Transition` component.
+    The transitions we're going for:
+      
+      1. The background overlay should fade-in on enter, 
+      fade-out on leave.
+      2. The Dialog pabel should slide-in from the bottom 
+      by 2rem on enter, and fade-out on leave.
+    You can use a `<Transition.Root>` component to 
+    orchestrate both transitions, which can use 
+    a `<Transition.Child>` component each.
+    WARNING: You'll need to remove the conditional 
+    `{isOpen}` checks in `index.tsx`, since the 
+    Transition takes care of that instead.
     ------------------------------
   */
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
       {/* Background overlay */}
-      <div
-        className={cx('fixed inset-0 bg-opacity-75 transition-opacity', toneClasses[tone])}
-      ></div>
+      <div className={cx('fixed inset-0 bg-opacity-75', toneClasses[tone])}></div>
       <div className="fixed inset-0 z-10 overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           {/* Modal panel */}

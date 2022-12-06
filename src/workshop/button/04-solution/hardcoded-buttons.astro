@@ -2,9 +2,14 @@
 import GroupDisplay from '~components/group-display.astro'
 ---
 
-<section class="mt-16">
+<section class="mt-8">
   <h2 class="text-2xl font-semibold">"Hardcoded" buttons</h2>
   <div class="mt-4 space-y-4">
+    <!-- 
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+      Default
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    -->
     <GroupDisplay title="Default tone">
       <button
         class="rounded-md bg-indigo-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -22,6 +27,12 @@ import GroupDisplay from '~components/group-display.astro'
         None
       </button>
     </GroupDisplay>
+
+    <!-- 
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+      Danger
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    -->
     <GroupDisplay title="Danger tone">
       <button
         class="rounded-md bg-red-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -39,6 +50,12 @@ import GroupDisplay from '~components/group-display.astro'
         None
       </button>
     </GroupDisplay>
+
+    <!-- 
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+      Success
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    -->
     <GroupDisplay title="Success tone">
       <button
         class="rounded-md bg-green-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
