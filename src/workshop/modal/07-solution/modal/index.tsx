@@ -6,15 +6,13 @@ import Button from '../button'
 export default function ModalDemo() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
-  const [isLocked, setIsLocked] = React.useState(false)
 
   function handleConfirm() {
     setIsLoading(true)
-    setIsLocked(true)
 
     setTimeout(() => {
+      setIsLoading(false)
       setIsOpen(false)
-      setIsLocked(false)
     }, 2000)
   }
 
@@ -26,18 +24,16 @@ export default function ModalDemo() {
         ------------------------------
       */}
       <Modal
+        open={isOpen}
+        isLoading={isLoading}
         slideFrom="top"
         tone="danger"
-        open={isOpen}
         onClose={() => setIsOpen(false)}
-        onCloseComplete={() => setIsLoading(false)}
         title="Delete account permantly"
-        isLocked={isLocked}
         actions={{
           confirm: {
             label: 'Yes, delete my account!',
             action: handleConfirm,
-            isLoading,
           },
           cancel: {
             label: 'Wow no, stop!',

@@ -8,10 +8,14 @@ import Button, { ButtonProps } from '../button'
 // Prop types
 // ---------------------------------
 type ModalProps = {
-  open: boolean
   onClose: () => void
+  onCloseComplete: () => void
   title: string
-  children: React.ReactNode
+  open: boolean
+  isLoading?: boolean
+  size?: 'small' | 'medium' | 'large'
+  tone?: ButtonProps['tone']
+  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
   actions: {
     cancel?: {
       label: string
@@ -22,12 +26,7 @@ type ModalProps = {
       action: () => void
     }
   }
-  size?: 'small' | 'medium' | 'large'
-  tone?: ButtonProps['tone']
-  /*
-    You know the drill - we've got a new prop!
-  */
-  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
+  children: React.ReactNode
 }
 
 // ---------------------------------
@@ -45,12 +44,6 @@ const toneClasses: Record<ModalProps['tone'], string> = {
   success: 'bg-green-300',
 }
 
-/* 
-  ------------------------------
-  TODO: Populate the `slideFromClasses` object below 
-  with the correct keys and styles.
-  ------------------------------
-*/
 const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: string }> = {
   top: {
     from: '-translate-y-8',
@@ -76,22 +69,18 @@ const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: stri
 export default function Modal({
   open,
   onClose,
+  onCloseComplete,
   title,
   children,
   actions,
+  isLoading = false,
   size = 'medium',
   tone = 'default',
   slideFrom = 'top',
 }: ModalProps) {
-  /* 
-    ------------------------------
-    TODO: Update the code below to make the Dialog panel slide 
-    from the direction specified in the `slideFrom` prop.
-    ------------------------------
-  */
   return (
-    <Transition.Root show={open}>
-      <Dialog onClose={onClose} className="relative z-10">
+    <Transition.Root show={open} afterLeave={onCloseComplete}>
+      <Dialog onClose={isLoading ? () => {} : onClose} className="relative z-10">
         {/* Background overlay */}
         <Transition.Child
           enter="transition ease-out"
@@ -114,8 +103,8 @@ export default function Modal({
               enterFrom={cx('opacity-0', slideFromClasses[slideFrom].from)}
               enterTo={cx('opacity-100', slideFromClasses[slideFrom].to)}
               leave="transition ease-in"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
             >
               <Dialog.Panel
                 className={cx(
@@ -137,14 +126,22 @@ export default function Modal({
 
                 {/* Action buttons */}
                 <div className="flex flex-col gap-2 border-t p-4 sm:flex-row-reverse">
-                  <Button tone={tone} onClick={actions.confirm.action}>
-                    {actions.confirm.label}
+                  <Button disabled={isLoading} tone={tone} onClick={actions.confirm.action}>
+                    <span className="flex items-center gap-3">
+                      <span>{actions.confirm.label}</span>
+                      {isLoading && <LoadingSpinner />}
+                    </span>
                   </Button>
 
                   {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
-                    <Button tone={tone} impact="none" onClick={actions.cancel.action}>
-                      {actions.cancel.label}
+                    <Button
+                      disabled={isLoading}
+                      tone={tone}
+                      impact="none"
+                      onClick={actions.cancel.action}
+                    >
+                      <span>{actions.cancel.label}</span>
                     </Button>
                   )}
                 </div>
@@ -154,5 +151,41 @@ export default function Modal({
         </div>
       </Dialog>
     </Transition.Root>
+  )
+}
+
+// ------------------------------
+// Loading spinner
+// ------------------------------
+function LoadingSpinner() {
+  return (
+    <Transition
+      appear
+      show={true}
+      enter="transition ease-out"
+      enterFrom="scale-0"
+      enterTo="scale-100"
+    >
+      <svg
+        className="h-5 w-5 animate-spin text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    </Transition>
   )
 }

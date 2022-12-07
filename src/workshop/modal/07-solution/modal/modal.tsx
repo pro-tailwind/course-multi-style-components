@@ -8,12 +8,13 @@ import Button, { ButtonProps } from '../button'
 // Prop types
 // ---------------------------------
 type ModalProps = {
-  open: boolean
   onClose: () => void
-  onCloseComplete: () => void
   title: string
-  isLocked: boolean
-  children: React.ReactNode
+  open: boolean
+  isLoading?: boolean
+  size?: 'small' | 'medium' | 'large'
+  tone?: ButtonProps['tone']
+  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
   actions: {
     cancel?: {
       label: string
@@ -22,12 +23,9 @@ type ModalProps = {
     confirm: {
       label: string
       action: () => void
-      isLoading?: boolean
     }
   }
-  size?: 'small' | 'medium' | 'large'
-  tone?: ButtonProps['tone']
-  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
+  children: React.ReactNode
 }
 
 // ---------------------------------
@@ -70,17 +68,16 @@ const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: stri
 export default function Modal({
   open,
   onClose,
-  onCloseComplete,
   title,
   children,
   actions,
+  isLoading = false,
   size = 'medium',
   tone = 'default',
   slideFrom = 'top',
-  isLocked = false,
 }: ModalProps) {
   return (
-    <Transition.Root show={isLocked ? true : open} afterLeave={onCloseComplete}>
+    <Transition.Root show={open}>
       <Dialog onClose={onClose} className="relative z-10">
         {/* Background overlay */}
         <Transition.Child
@@ -127,17 +124,17 @@ export default function Modal({
 
                 {/* Action buttons */}
                 <div className="flex flex-col gap-2 border-t p-4 sm:flex-row-reverse">
-                  <Button disabled={isLocked} tone={tone} onClick={actions.confirm.action}>
+                  <Button disabled={isLoading} tone={tone} onClick={actions.confirm.action}>
                     <span className="flex items-center gap-3">
                       <span>{actions.confirm.label}</span>
-                      {actions.confirm.isLoading && <LoadingSpinner />}
+                      {isLoading && <LoadingSpinner />}
                     </span>
                   </Button>
 
                   {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
                     <Button
-                      disabled={isLocked}
+                      disabled={isLoading}
                       tone={tone}
                       impact="none"
                       onClick={actions.cancel.action}

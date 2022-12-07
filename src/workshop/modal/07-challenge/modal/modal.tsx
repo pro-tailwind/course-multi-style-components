@@ -11,7 +11,12 @@ type ModalProps = {
   open: boolean
   onClose: () => void
   title: string
-  children: React.ReactNode
+  // New prop alert, the `isLoading` prop!
+  isLoading?: boolean
+  //
+  size?: 'small' | 'medium' | 'large'
+  tone?: ButtonProps['tone']
+  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
   actions: {
     cancel?: {
       label: string
@@ -20,15 +25,9 @@ type ModalProps = {
     confirm: {
       label: string
       action: () => void
-      /*
-        New prop alert, the `actions.confirm.isLoading` prop!
-      */
-      isLoading?: boolean
     }
   }
-  size?: 'small' | 'medium' | 'large'
-  tone?: ButtonProps['tone']
-  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
+  children: React.ReactNode
 }
 
 // ---------------------------------
@@ -131,8 +130,9 @@ export default function Modal({
                       <span>{actions.confirm.label}</span>
                       {/* 
                         ------------------------------
-                        TODO: Add loading spinner next to the button text
-                        when `isLoading` is true
+                        TODO: Add loading spinner (scroll below) 
+                        next to the button text when 
+                        `isLoading` is true.
                         ------------------------------
                       */}
                     </span>
