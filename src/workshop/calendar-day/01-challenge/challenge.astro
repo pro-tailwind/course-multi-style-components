@@ -1,0 +1,117 @@
+---
+import { cx } from '~/utils'
+
+// ------------------------------
+// Calendar day statuses
+// ------------------------------
+/* 
+  We've identified that a calendar day will always be in 
+  one of these states, or "availability statuses",
+  represented by the `Status` type:
+*/
+type Status = 'DISABLED' | 'SELECTED' | 'NO_VACANCY' | 'TODAY_NO_VACANCY' | 'VACANCY'
+
+// ------------------------------
+// Styles lookup dictionary
+// ------------------------------
+
+const baseClasses =
+  'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
+
+/* 
+  TODO: Rename the `statusClasses` keys below to match the
+  finite list of Status values we have just established.
+*/
+const statusClasses: Record<Status, string> = {
+  disabled: 'text-slate-300 pointer-events-none',
+  selected: 'bg-indigo-600 text-white font-bold bg-stripes',
+  candidate: 'text-slate-900 hover:bg-slate-100',
+  today: 'text-indigo-600 font-bold hover:bg-slate-100',
+  hasAvailability: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
+}
+---
+
+<div>
+  <h2 class="text-sm font-semibold uppercase tracking-widest text-blue-500">Challenge</h2>
+  <table class="mt-4 divide-y-2 divide-blue-500">
+    <thead>
+      <tr class="divide-x">
+        <th class="px-4 py-2 text-right font-normal">Status</th>
+        <th class="px-4 py-2 text-center font-normal"></th>
+        <th class="px-4 py-2 text-center font-normal">Today</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y">
+      <!-- DISABLED -->
+      <tr class="divide-x">
+        <td class="px-4 py-2 text-right">DISABLED</td>
+        <td class="px-4 py-2">
+          <div
+            role="button"
+            aria-disabled="true"
+            tabindex="-1"
+            class={cx(baseClasses, statusClasses['DISABLED'])}
+          >
+            <span>8</span>
+          </div>
+        </td>
+        <td class="px-4 py-2 text-center text-sm font-semibold text-red-300">N/A</td>
+      </tr>
+
+      <!-- NO VACANCY -->
+      <tr class="divide-x">
+        <td class="px-4 py-2 text-right">NO VACANCY</td>
+        <td class="px-4 py-2">
+          <div role="button" tabindex="0" class={cx(baseClasses, statusClasses['NO_VACANCY'])}>
+            <span>18</span>
+          </div>
+        </td>
+        <td class="px-4 py-2">
+          <div
+            tabindex="0"
+            role="button"
+            class={cx(baseClasses, statusClasses['TODAY_NO_VACANCY'])}
+          >
+            <span>16</span><span
+              class="absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-indigo-600"
+            ></span>
+          </div>
+        </td>
+      </tr>
+
+      <!-- VACANCY -->
+      <tr class="divide-x">
+        <td class="px-4 py-2 text-right">VACANCY</td>
+        <td class="px-4 py-2">
+          <div role="button" tabindex="0" class={cx(baseClasses, statusClasses['VACANCY'])}>
+            <span>19</span>
+          </div>
+        </td>
+        <td class="px-4 py-2">
+          <div tabindex="0" role="button" class={cx(baseClasses, statusClasses['VACANCY'])}>
+            <span>16</span><span
+              class="absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-indigo-600"
+            ></span>
+          </div>
+        </td>
+      </tr>
+
+      <!-- SELECTED -->
+      <tr class="divide-x">
+        <td class="px-4 py-2 text-right">SELECTED</td>
+        <td class="px-4 py-2">
+          <div tabindex="0" role="button" class={cx(baseClasses, statusClasses['SELECTED'])}>
+            <span>22</span>
+          </div>
+        </td>
+        <td class="px-4 py-2">
+          <div tabindex="0" role="button" class={cx(baseClasses, statusClasses['SELECTED'])}>
+            <span>16</span><span
+              class="absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-white"
+            ></span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

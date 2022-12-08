@@ -5,6 +5,9 @@ import Layout from '~layouts/base.astro'
 type AstroInstanceWithTitle = AstroInstance & { title: string }
 const buttonChallenges = (await Astro.glob('./button/*.astro')) as AstroInstanceWithTitle[]
 const modalChallenges = (await Astro.glob('./modal/*.astro')) as AstroInstanceWithTitle[]
+const calendarDayChallenges = (await Astro.glob(
+  './calendar-day/*.astro'
+)) as AstroInstanceWithTitle[]
 ---
 
 <Layout>
@@ -27,6 +30,19 @@ const modalChallenges = (await Astro.glob('./modal/*.astro')) as AstroInstanceWi
     <ul class="mt-2">
       {
         modalChallenges.map((challenge) => (
+          <li>
+            <a class="underline hover:text-indigo-600" href={challenge.url}>
+              {challenge.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2 class="mt-8 text-lg font-medium">Calendar day</h2>
+    <ul class="mt-2">
+      {
+        calendarDayChallenges.map((challenge) => (
           <li>
             <a class="underline hover:text-indigo-600" href={challenge.url}>
               {challenge.title}

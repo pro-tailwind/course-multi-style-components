@@ -1,0 +1,15 @@
+---
+import Challenge from './challenge'
+import Reference from './reference'
+---
+
+<div class="my-20 mx-auto grid max-w-4xl justify-center gap-x-32 gap-y-20 lg:grid-cols-2">
+  <div class="max-w-md">
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-blue-500">Challenge</h2>
+    <Challenge client:only="react" />
+  </div>
+  <div class="max-w-md">
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-red-500">Reference</h2>
+    <Reference client:only="react" />
+  </div>
+</div>

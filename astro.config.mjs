@@ -9,10 +9,7 @@ import alpinejs from '@astrojs/alpinejs'
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [
-      // plugin(),
-      viteCommonjs(),
-    ],
+    plugins: [viteCommonjs()],
   },
   integrations: [react(), svelte(), vue(), solidJs(), alpinejs()],
 })
