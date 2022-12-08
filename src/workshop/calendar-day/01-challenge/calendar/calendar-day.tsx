@@ -35,7 +35,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     disabled: 'text-slate-300 pointer-events-none',
     candidate: 'hover:bg-slate-100 text-slate-900',
     hasAvailability: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
-    today: 'text-indigo-600 font-bold hover:bg-slate-100',
+    today: 'text-slate-900 hover:bg-slate-100',
     selected: 'bg-indigo-600 text-white font-bold bg-stripes',
   }
 
@@ -51,6 +51,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
           isSelected && dynamicClasses.selected,
           isDisabled && dynamicClasses.disabled,
           isCurrentDay && !isSelected && dynamicClasses.today,
+          isCurrentDay && !isSelected && hasAvailability && '!text-indigo-600',
           hasAvailability && !isDisabled && !isSelected && dynamicClasses.hasAvailability,
           !hasAvailability &&
             !isCurrentDay &&
