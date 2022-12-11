@@ -8,12 +8,15 @@ import Button, { ButtonProps } from '../button'
 // Prop types
 // ---------------------------------
 type ModalProps = {
+  // Two boolean props sharing concerns
   open: boolean
-  onClose: () => void
-  title: string
-  // New prop alert, the `isLoading` prop!
   isLoading?: boolean
-  //
+
+  status: 'OPEN' | 'CLOSED' | 'LOADING' | 'STALLING' | 'ERROR' | '...'
+
+  onClose: () => void
+  onCloseComplete?: () => void
+  title: string
   size?: 'small' | 'medium' | 'large'
   tone?: ButtonProps['tone']
   slideFrom?: 'top' | 'right' | 'bottom' | 'left'
@@ -69,7 +72,9 @@ const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: stri
 // ---------------------------------
 export default function Modal({
   open,
+  isLoading = false,
   onClose,
+  onCloseComplete = () => {},
   title,
   children,
   actions,
@@ -78,8 +83,8 @@ export default function Modal({
   slideFrom = 'top',
 }: ModalProps) {
   return (
-    <Transition.Root show={open}>
-      <Dialog onClose={onClose} className="relative z-10">
+    <Transition.Root show={open} afterLeave={onCloseComplete}>
+      <Dialog onClose={isLoading ? () => {} : onClose} className="relative z-10">
         {/* Background overlay */}
         <Transition.Child
           enter="transition ease-out"
@@ -113,34 +118,29 @@ export default function Modal({
               >
                 <div className="bg-white p-4 sm:p-6">
                   <div className="text-center sm:text-left">
-                    {/* Title */}
                     <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
                       {title}
                     </Dialog.Title>
-
-                    {/* Body */}
                     {children}
                   </div>
                 </div>
 
                 {/* Action buttons */}
                 <div className="flex flex-col gap-2 border-t p-4 sm:flex-row-reverse">
-                  <Button tone={tone} onClick={actions.confirm.action}>
+                  <Button disabled={isLoading} tone={tone} onClick={actions.confirm.action}>
                     <span className="flex items-center gap-3">
                       <span>{actions.confirm.label}</span>
-                      {/* 
-                        ------------------------------
-                        TODO: Add loading spinner (scroll below) 
-                        next to the button text when 
-                        `isLoading` is true.
-                        ------------------------------
-                      */}
+                      {isLoading && <LoadingSpinner />}
                     </span>
                   </Button>
 
-                  {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
-                    <Button tone={tone} impact="none" onClick={actions.cancel.action}>
+                    <Button
+                      disabled={isLoading}
+                      tone={tone}
+                      impact="none"
+                      onClick={actions.cancel.action}
+                    >
                       <span>{actions.cancel.label}</span>
                     </Button>
                   )}

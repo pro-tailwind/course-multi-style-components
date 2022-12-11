@@ -4,26 +4,32 @@ import { isSameDay, parseDateTime, isToday, getLocalTimeZone } from '@internatio
 
 import { cx } from '~/utils'
 
-// ------------------------------
-// Component definition
-// ------------------------------
 export default function CalendarDay({ state, date, bookingAvailabilities }) {
   const ref = React.useRef()
   const { cellProps, buttonProps, isSelected, isOutsideVisibleRange, isDisabled, formattedDate } =
     useCalendarCell({ date }, state, ref)
 
-  // Checking if the day is today
+  // Check if the day is today
   const localTimezone = getLocalTimeZone()
   const isCurrentDay = isToday(date, localTimezone)
 
-  /* 
-    Our calendar has certain available, "bookable" dates.
-    We create a list of days with availability, so that
-    we can style those calendar days differently.
-  */
+  // Match booking availabilies against the day
   const hasAvailability = bookingAvailabilities.some((availability) =>
     isSameDay(parseDateTime(availability.startTime), date)
   )
+
+  /* 
+    ------------------------------
+    TODO:
+    Try come up with a finite list of possible "visual states" 
+    a calendar day can be in. List those states in 
+    the `Status` type below.
+
+    Note: A day should only ever have 
+    *one status only* at any time.
+    ------------------------------
+  */
+  type Status = 'SELECTED' | 'STATUS_TWO' | '...' // ...complete the list based on your observations!
 
   // ------------------------------
   // Styles lookup dictionary
@@ -35,17 +41,21 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     disabled: 'text-slate-300 pointer-events-none',
     candidate: 'hover:bg-slate-100 text-slate-900',
     hasAvailability: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
-    today: 'text-indigo-600 font-bold hover:bg-slate-100',
+    today: 'text-slate-900 hover:bg-slate-100 font-bold',
     selected: 'bg-indigo-600 text-white font-bold bg-stripes',
   }
 
   return (
-    // Spreading `useCalendar` props on the various elememnts...
     <td {...cellProps}>
       <div
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
+        /* 
+          The logic to handle styling in the classname below has 
+          become quite complex, and a little refactoring
+          would probably improve the situation!
+        */
         className={cx(
           baseClasses,
           isSelected && dynamicClasses.selected,
@@ -60,7 +70,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
         )}
       >
         <span>{formattedDate}</span>
-        {/* Adding a "spot" below the current day */}
+        {/* Current day "spot" indicator */}
         {isCurrentDay && (
           <span
             className={cx(
