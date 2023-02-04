@@ -1,45 +1,65 @@
-# Astro Starter Kit: Minimal
+# Pro Tailwind - Multi-Style Tailwind Cmponents
 
-```
-npm create astro@latest -- --template minimal
-```
+This repo contains all the challenges for the Multi-Style Tailwind Components self-paced workshop.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
+You don't have to clone this repo since all the challenges can be completed via Gitpod.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+When opening a Gitpod link, the relevant code file and UI preview will be open side by side.
 
-## 🚀 Project Structure
+## Installation
 
-Inside of your Astro project, you'll see the following folders and files:
+If you decide to clone the repo, here's what you need to do to get going:
 
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+### Clone the repo and install the local dependencies:
+
+```sh
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Start the dev server:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+You'll be able to open the project in your browser at [http://localhost:3000](http://localhost:3000).
 
-## 🧞 Commands
+## Course challenges
 
-All commands are run from the root of the project, from a terminal:
+This course is a series of problem/solution sequences.
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+You work on a challenge, and then can compare your approach with the provided solution.
 
-## 👀 Want to learn more?
+There are three sections to this workshop, as detailed below.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 1. Button Section
+
+In this section, we'll take a series of hardcoded buttons with repeating Tailwind classes, and extract the styles into dynamic, composable groups that map a Button component's style variant props.
+
+The challenges for this section are located in `src/workshop/button`. Each challenge ID corresponds to the URL for a given challenge.
+
+For example, the challenge you can see at `https://localhost:3000/button/02-04-01` will be located in `src/workshop/button/02-04-01`.
+
+---
+
+## 2. Modal Section
+
+In this section, we'll leverage Headless UI to drastically improve the usability and accessibility of a Modal component. We'll then implement multiple style variants, making options available for the modal size, tone and slide-in animation direction.
+
+The challenges for this section are located in `src/workshop/modal`. Each challenge ID corresponds to the URL for a given challenge.
+
+For example, the challenge you can see at `https://localhost:3000/modal/03-04-01` will be located in `src/workshop/modal/03-04-01`.
+
+---
+
+## 3. Calendar-day Section
+
+This challenge is based on some real world scenario that I faced myself when building the [Calendar App](https://calendar-app.protailwind.com).
+
+Time after time, as I built the app from scratch to discover some interesting teaching moments, I ended up making a mess with the Calendar component.
+
+The challenges for this section are located in `src/workshop/calendar-day`. Each challenge ID corresponds to the URL for a given challenge.
+
+For example, the challenge you can see at `https://localhost:3000/calendar-day/04-04-01` will be located in `src/workshop/calendar-day/04-04-01`.
