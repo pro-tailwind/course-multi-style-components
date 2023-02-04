@@ -22,7 +22,7 @@ export function makeCalendarAvailabilities(weeks, options) {
   while (i < weeks) {
     const weekOffset = i * 7
     output.push(
-      ...[0, 2, 3].map((d) => ({
+      ...[1, 3, 4].map((d) => ({
         startTime: nextMonday.add({ days: weekOffset + d }).toString(),
         endTime: nextMonday.add({ days: weekOffset + d }).toString(),
       }))

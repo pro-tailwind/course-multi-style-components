@@ -2,55 +2,108 @@
 import { AstroInstance } from 'astro'
 import Layout from '~layouts/base.astro'
 
-type AstroInstanceWithTitle = AstroInstance & { title: string }
+type AstroInstanceWithTitle = AstroInstance & {
+  id: string
+  title: string
+  tag: 'Challenge' | 'Solution'
+}
+
 const buttonChallenges = (await Astro.glob('./button/*.astro')) as AstroInstanceWithTitle[]
 const modalChallenges = (await Astro.glob('./modal/*.astro')) as AstroInstanceWithTitle[]
 const calendarDayChallenges = (await Astro.glob(
   './calendar-day/*.astro'
 )) as AstroInstanceWithTitle[]
+
+function cx(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 ---
 
 <Layout>
-  <div class="mx-auto mt-12 max-w-5xl px-4 sm:block">
-    <h1 class="text-xl font-medium">Multi-Style Components with Tailwind CSS</h1>
-    <h2 class="mt-8 text-lg font-medium">Button</h2>
-    <ul class="mt-2">
-      {
-        buttonChallenges.map((challenge) => (
-          <li>
-            <a class="underline hover:text-indigo-600" href={challenge.url}>
-              {challenge.title}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+  <div class="overflow-hidden bg-gray-50">
+    <div class="mx-auto mt-12 max-w-5xl px-4 sm:block">
+      <h1 class="text-xl font-medium">Multi-Style Components with Tailwind CSS</h1>
+      <h2 class="mt-8 text-xl font-semibold">Button</h2>
+      <ul class="mt-4 grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        {
+          buttonChallenges.map((step) => (
+            <li class="relative rounded-lg bg-white p-6 shadow transition duration-75 hover:-translate-y-[2px] hover:shadow-md">
+              <div class="flex items-center gap-4">
+                <p class="font-semibold text-gray-400">{step.id}</p>
+                <p
+                  class={cx(
+                    'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
+                    step.tag === 'Challenge'
+                      ? 'bg-yellow-100 text-yellow-700'
+                      : 'bg-green-100 text-green-700'
+                  )}
+                >
+                  {step.tag}
+                </p>
+              </div>
+              <p class="mt-3 block text-gray-900 hover:text-indigo-600 hover:underline">
+                {step.title}
+              </p>
+              <a href={step.url} aria-label="Start this step" class="absolute inset-0" />
+            </li>
+          ))
+        }
+      </ul>
 
-    <h2 class="mt-8 text-lg font-medium">Modal</h2>
-    <ul class="mt-2">
-      {
-        modalChallenges.map((challenge) => (
-          <li>
-            <a class="underline hover:text-indigo-600" href={challenge.url}>
-              {challenge.title}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+      <h2 class="mt-16 text-xl font-semibold">Modal</h2>
+      <ul class="mt-4 grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        {
+          modalChallenges.map((step) => (
+            <li class="relative rounded-lg bg-white p-6 shadow transition duration-75 hover:-translate-y-[2px] hover:shadow-md">
+              <div class="flex items-center gap-4">
+                <p class="font-semibold text-gray-400">{step.id}</p>
+                <p
+                  class={cx(
+                    'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
+                    step.tag === 'Challenge'
+                      ? 'bg-yellow-100 text-yellow-700'
+                      : 'bg-green-100 text-green-700'
+                  )}
+                >
+                  {step.tag}
+                </p>
+              </div>
+              <p class="mt-3 block text-gray-900 hover:text-indigo-600 hover:underline">
+                {step.title}
+              </p>
+              <a href={step.url} aria-label="Start this step" class="absolute inset-0" />
+            </li>
+          ))
+        }
+      </ul>
 
-    <h2 class="mt-8 text-lg font-medium">Calendar day</h2>
-    <ul class="mt-2">
-      {
-        calendarDayChallenges.map((challenge) => (
-          <li>
-            <a class="underline hover:text-indigo-600" href={challenge.url}>
-              {challenge.title}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+      <h2 class="mt-16 text-xl font-semibold">Calendar day</h2>
+      <ul class="mt-4 grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        {
+          calendarDayChallenges.map((step) => (
+            <li class="relative rounded-lg bg-white p-6 shadow transition duration-75 hover:-translate-y-[2px] hover:shadow-md">
+              <div class="flex items-center gap-4">
+                <p class="font-semibold text-gray-400">{step.id}</p>
+                <p
+                  class={cx(
+                    'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
+                    step.tag === 'Challenge'
+                      ? 'bg-yellow-100 text-yellow-700'
+                      : 'bg-green-100 text-green-700'
+                  )}
+                >
+                  {step.tag}
+                </p>
+              </div>
+              <p class="mt-3 block text-gray-900 hover:text-indigo-600 hover:underline">
+                {step.title}
+              </p>
+              <a href={step.url} aria-label="Start this step" class="absolute inset-0" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </Layout>
 

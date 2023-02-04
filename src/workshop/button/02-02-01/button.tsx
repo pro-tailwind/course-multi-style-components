@@ -17,13 +17,7 @@ type ButtonProps = {
   `baseClasses` variable below.
   ------------------------------
 */
-const baseClasses =
-  'font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50'
-
-const thing = {
-  foo: 'text-red-500',
-  bar: 'text-4xl font-semibold',
-}
+const baseClasses = ''
 
 // ------------------------------
 // Component definition
@@ -43,7 +37,7 @@ const Button = ({
         the className attribute below.
         ------------------------------
       */
-      className={baseClasses}
+      className=""
     />
   )
 }
