@@ -9,7 +9,7 @@ import Button, { ButtonProps } from '../button'
 // ---------------------------------
 type ModalProps = {
   onClose: () => void
-  onCloseComplete: () => void
+  onCloseComplete?: () => void
   title: string
   open: boolean
   isLoading?: boolean
@@ -69,7 +69,7 @@ const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: stri
 export default function Modal({
   open,
   onClose,
-  onCloseComplete,
+  onCloseComplete = () => {},
   title,
   children,
   actions,
@@ -80,7 +80,7 @@ export default function Modal({
 }: ModalProps) {
   return (
     <Transition.Root show={open} afterLeave={onCloseComplete}>
-      <Dialog onClose={onClose} className="relative z-10">
+      <Dialog onClose={isLoading ? () => {} : onClose} className="relative z-10">
         {/* Background overlay */}
         <Transition.Child
           enter="transition ease-out"
@@ -126,7 +126,7 @@ export default function Modal({
 
                 {/* Action buttons */}
                 <div className="flex flex-col gap-2 border-t p-4 sm:flex-row-reverse">
-                  <Button tone={tone} onClick={actions.confirm.action}>
+                  <Button disabled={isLoading} tone={tone} onClick={actions.confirm.action}>
                     <span className="flex items-center gap-3">
                       <span>{actions.confirm.label}</span>
                       {isLoading && <LoadingSpinner />}
@@ -135,7 +135,12 @@ export default function Modal({
 
                   {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
-                    <Button tone={tone} impact="none" onClick={actions.cancel.action}>
+                    <Button
+                      disabled={isLoading}
+                      tone={tone}
+                      impact="none"
+                      onClick={actions.cancel.action}
+                    >
                       <span>{actions.cancel.label}</span>
                     </Button>
                   )}

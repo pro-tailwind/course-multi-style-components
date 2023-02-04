@@ -17,11 +17,6 @@ export default function ModalDemo() {
 
   return (
     <main>
-      {/* 
-        ------------------------------
-        Slide from top
-        ------------------------------
-      */}
       <Modal
         open={isOpen}
         isLoading={isLoading}

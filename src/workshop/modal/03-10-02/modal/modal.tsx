@@ -8,11 +8,15 @@ import Button, { ButtonProps } from '../button'
 // Prop types
 // ---------------------------------
 type ModalProps = {
-  onClose: () => void
-  onCloseComplete: () => void
-  title: string
+  // Two boolean props sharing concerns
   open: boolean
   isLoading?: boolean
+
+  status: 'OPEN' | 'CLOSED' | 'LOADING' | 'STALLING' | 'ERROR' | '...'
+
+  onClose: () => void
+  onCloseComplete?: () => void
+  title: string
   size?: 'small' | 'medium' | 'large'
   tone?: ButtonProps['tone']
   slideFrom?: 'top' | 'right' | 'bottom' | 'left'
@@ -68,12 +72,12 @@ const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: stri
 // ---------------------------------
 export default function Modal({
   open,
+  isLoading = false,
   onClose,
-  onCloseComplete,
+  onCloseComplete = () => {},
   title,
   children,
   actions,
-  isLoading = false,
   size = 'medium',
   tone = 'default',
   slideFrom = 'top',
@@ -114,12 +118,9 @@ export default function Modal({
               >
                 <div className="bg-white p-4 sm:p-6">
                   <div className="text-center sm:text-left">
-                    {/* Title */}
                     <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
                       {title}
                     </Dialog.Title>
-
-                    {/* Body */}
                     {children}
                   </div>
                 </div>
@@ -133,7 +134,6 @@ export default function Modal({
                     </span>
                   </Button>
 
-                  {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
                     <Button
                       disabled={isLoading}

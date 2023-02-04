@@ -5,7 +5,7 @@ import Layout from '~layouts/base.astro'
 type AstroInstanceWithTitle = AstroInstance & {
   id: string
   title: string
-  tag: 'Challenge' | 'Solution'
+  tag: 'Challenge' | 'Solution' | 'Show & Tell'
 }
 
 const buttonChallenges = (await Astro.glob('./button/*.astro')) as AstroInstanceWithTitle[]
@@ -33,9 +33,9 @@ function cx(...classes: string[]) {
                 <p
                   class={cx(
                     'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
-                    step.tag === 'Challenge'
-                      ? 'bg-yellow-100 text-yellow-700'
-                      : 'bg-green-100 text-green-700'
+                    step.tag === 'Challenge' && 'bg-yellow-100 text-yellow-700',
+                    step.tag === 'Solution' && 'bg-green-100 text-green-700',
+                    step.tag === 'Show & Tell' && 'bg-indigo-100 text-indigo-700'
                   )}
                 >
                   {step.tag}
@@ -60,9 +60,9 @@ function cx(...classes: string[]) {
                 <p
                   class={cx(
                     'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
-                    step.tag === 'Challenge'
-                      ? 'bg-yellow-100 text-yellow-700'
-                      : 'bg-green-100 text-green-700'
+                    step.tag === 'Challenge' && 'bg-yellow-100 text-yellow-700',
+                    step.tag === 'Solution' && 'bg-green-100 text-green-700',
+                    step.tag === 'Show & Tell' && 'bg-indigo-100 text-indigo-700'
                   )}
                 >
                   {step.tag}
@@ -87,9 +87,9 @@ function cx(...classes: string[]) {
                 <p
                   class={cx(
                     'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
-                    step.tag === 'Challenge'
-                      ? 'bg-yellow-100 text-yellow-700'
-                      : 'bg-green-100 text-green-700'
+                    step.tag === 'Challenge' && 'bg-yellow-100 text-yellow-700',
+                    step.tag === 'Solution' && 'bg-green-100 text-green-700',
+                    step.tag === 'Show & Tell' && 'bg-indigo-100 text-indigo-700'
                   )}
                 >
                   {step.tag}
