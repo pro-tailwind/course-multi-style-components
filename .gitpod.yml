@@ -6,8 +6,8 @@ tasks:
   - name: Lesson Context
     command: |
       gp ports await 3000
-      gp open src/workshop/${section}/${step}/${file}
-      gp preview $(gp url 3000)/${section}/${step}
+      gp open src/workshop/${section}/${id}/${file}
+      gp preview $(gp url 3000)/${section}/${id}
       exit
     openMode: split-right
 
