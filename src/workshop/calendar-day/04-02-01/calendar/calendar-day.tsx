@@ -29,7 +29,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     *one status only* at any time.
     ------------------------------
   */
-  type Status = 'SELECTED' | 'STATUS_TWO' | '...' // ...complete the list based on your observations!
+  type Status = 'SELECTED' | 'STATUS_TWO' | '...' // complete the list based on your observations!
 
   // ------------------------------
   // Styles lookup dictionary
