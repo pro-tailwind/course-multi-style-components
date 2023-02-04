@@ -1,4 +1,4 @@
-# Pro Tailwind - Multi-Style Tailwind Cmponents
+# Pro Tailwind - Multi-Style Tailwind Components
 
 This repo contains all the challenges for the Multi-Style Tailwind Components self-paced workshop.
 
