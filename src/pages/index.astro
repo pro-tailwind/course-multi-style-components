@@ -2,10 +2,12 @@
 import { AstroInstance } from 'astro'
 import Layout from '~layouts/base.astro'
 
+type Tag = 'Challenge' | 'Solution' | 'Show & Tell'
+
 type AstroInstanceWithTitle = AstroInstance & {
   id: string
   title: string
-  tag: 'Challenge' | 'Solution' | 'Show & Tell'
+  tag: Tag
 }
 
 const buttonChallenges = (await Astro.glob('./button/*.astro')) as AstroInstanceWithTitle[]
@@ -16,6 +18,12 @@ const calendarDayChallenges = (await Astro.glob(
 
 function cx(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
+}
+
+const badgeColorClasses: Record<Tag, string> = {
+  Challenge: 'bg-yellow-100 text-yellow-700',
+  Solution: 'bg-green-100 text-green-700',
+  'Show & Tell': 'bg-indigo-100 text-indigo-700',
 }
 ---
 
@@ -33,9 +41,7 @@ function cx(...classes: string[]) {
                 <p
                   class={cx(
                     'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
-                    step.tag === 'Challenge' && 'bg-yellow-100 text-yellow-700',
-                    step.tag === 'Solution' && 'bg-green-100 text-green-700',
-                    step.tag === 'Show & Tell' && 'bg-indigo-100 text-indigo-700'
+                    badgeColorClasses[step.tag]
                   )}
                 >
                   {step.tag}
@@ -60,9 +66,7 @@ function cx(...classes: string[]) {
                 <p
                   class={cx(
                     'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
-                    step.tag === 'Challenge' && 'bg-yellow-100 text-yellow-700',
-                    step.tag === 'Solution' && 'bg-green-100 text-green-700',
-                    step.tag === 'Show & Tell' && 'bg-indigo-100 text-indigo-700'
+                    badgeColorClasses[step.tag]
                   )}
                 >
                   {step.tag}
@@ -87,9 +91,7 @@ function cx(...classes: string[]) {
                 <p
                   class={cx(
                     'rounded-lg px-2 py-1 text-xs font-medium uppercase tracking-widest',
-                    step.tag === 'Challenge' && 'bg-yellow-100 text-yellow-700',
-                    step.tag === 'Solution' && 'bg-green-100 text-green-700',
-                    step.tag === 'Show & Tell' && 'bg-indigo-100 text-indigo-700'
+                    badgeColorClasses[step.tag]
                   )}
                 >
                   {step.tag}
