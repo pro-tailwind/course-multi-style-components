@@ -1,0 +1,17 @@
+tasks:
+  - name: Dev Server
+    init: npm install
+    command: npm run dev
+
+  - name: Lesson Context
+    command: |
+      gp ports await 3000
+      gp open src/workshop/${section}/${step}/${file}
+      gp preview $(gp url 3000)/${section}/${step}
+      exit
+    openMode: split-right
+
+vscode:
+  extensions:
+    - astro-build.astro-vscode
+    - bradlc.vscode-tailwindcss
