@@ -63,3 +63,43 @@ Time after time, as I built the app from scratch to discover some interesting te
 The challenges for this section are located in `src/workshop/calendar-day`. Each challenge ID corresponds to the URL for a given challenge.
 
 For example, the challenge you can see at `https://localhost:3000/calendar-day/04-04-01` will be located in `src/workshop/calendar-day/04-04-01`.
+
+---
+
+# Creating dynamic Gitpod links
+
+Each challenge/solution can be open in Gitpod with the most relevant code snippet on the left panel, and the UI preview on the right.
+
+To make the process of creating links easier, I've implemented three Gitpod environment variables that can be passed to a Gitpod URL to take care of opening the right files: `section`, `id` and `file`.
+
+- `section`: one of the three main workshop sections (button, modal, calendar day)
+- `id`: lesson ID (eg. `02-05-02`)
+- `file`: the path (relative to lesson directory) to the code file to open on the left panel
+
+[Looking at this line of the Gitpod YAML config](https://github.com/pro-tailwind/course-multi-style-components/blob/main/.gitpod.yml#L9) may help understand how this works.
+
+You can pass environment variables to a Gitpod URL by adding a series of `key=value,key2=value2,key3=value3/` key-value pairs between the `https://gitpod.io/#` segment and the repo URL. You need a trailing slash to "close" the variables segment.
+
+Here's an example:
+
+```
+https://gitpod.io/#section=button,id=02-07-01,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+```
+
+Here, the variables passed are:
+
+```sh
+section=button
+id=02-07-01
+file=button.tsx
+```
+
+### ⚠️ Important note
+
+Sometimes, you'll want to open a code file (left panel) that is nested within the lesson directory.
+
+Since in the Gitpod URL, a `/` slash _closes_ the environment variables string, you cannot pass something like `file=modal/index.tsx`. This will break the syntax.
+
+To work around this, I've added a [string replacement in the Gitpod YAML file](https://github.com/pro-tailwind/course-multi-style-components/blob/main/.gitpod.yml#L9) that will convert a `+` symbol to a `/` in the parsed URL, effectively bypassing this issue.
+
+What that means is if you want to open a nested file by default for a given lesson, you'll need to pass the path with `+` instead of `/`, like so: `file=modal+index.tsx`.
