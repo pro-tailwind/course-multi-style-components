@@ -149,3 +149,39 @@ Below is the environment variable data to generate Gitpod links for all lessons:
   "04-04-02": { "section": "calendar-day", "id": "04-04-02", "file": "challenge+calendar-day.tsx" }
 }
 ```
+
+Here's a list of all the Gitpod URLs for each lesson:
+
+- 02-02-01: https://gitpod.io/#section=button,id=02-02-01,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 02-02-02: https://gitpod.io/#section=button,id=02-02-02,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 02-03-01: https://gitpod.io/#section=button,id=02-03-01,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 02-03-02: https://gitpod.io/#section=button,id=02-03-02,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 02-04-01: https://gitpod.io/#section=button,id=02-04-01,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 02-04-02: https://gitpod.io/#section=button,id=02-04-02,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 02-05-01: https://gitpod.io/#section=button,id=02-05-01,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 02-05-02: https://gitpod.io/#section=button,id=02-05-02,file=button.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-02-01: https://gitpod.io/#section=modal,id=03-02-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-02-02: https://gitpod.io/#section=modal,id=03-02-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-03-01: https://gitpod.io/#section=modal,id=03-03-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-03-02: https://gitpod.io/#section=modal,id=03-03-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-04-01: https://gitpod.io/#section=modal,id=03-04-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-04-02: https://gitpod.io/#section=modal,id=03-04-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-05-01: https://gitpod.io/#section=modal,id=03-05-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-05-02: https://gitpod.io/#section=modal,id=03-05-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-06-01: https://gitpod.io/#section=modal,id=03-06-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-06-02: https://gitpod.io/#section=modal,id=03-06-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-07-01: https://gitpod.io/#section=modal,id=03-07-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-07-02: https://gitpod.io/#section=modal,id=03-07-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-08-01: https://gitpod.io/#section=modal,id=03-08-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-08-02: https://gitpod.io/#section=modal,id=03-08-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-08-03: https://gitpod.io/#section=modal,id=03-08-03,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-09-01: https://gitpod.io/#section=modal,id=03-09-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-09-02: https://gitpod.io/#section=modal,id=03-09-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-10-01: https://gitpod.io/#section=modal,id=03-10-01,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 03-10-02: https://gitpod.io/#section=modal,id=03-10-02,file=modal+modal.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 04-02-01: https://gitpod.io/#section=calendar-day,id=04-02-01,file=calendar+calendar-day.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 04-02-02: https://gitpod.io/#section=calendar-day,id=04-02-02,file=calendar+calendar-day.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 04-03-01: https://gitpod.io/#section=calendar-day,id=04-03-01,file=challenge.astro/https://github.com/pro-tailwind/course-multi-style-components
+- 04-03-02: https://gitpod.io/#section=calendar-day,id=04-03-02,file=challenge.astro/https://github.com/pro-tailwind/course-multi-style-components
+- 04-04-01: https://gitpod.io/#section=calendar-day,id=04-04-01,file=challenge+calendar-day.tsx/https://github.com/pro-tailwind/course-multi-style-components
+- 04-04-02: https://gitpod.io/#section=calendar-day,id=04-04-02,file=challenge+calendar-day.tsx/https://github.com/pro-tailwind/course-multi-style-components
