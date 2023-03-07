@@ -103,3 +103,49 @@ Since in the Gitpod URL, a `/` slash _closes_ the environment variables string, 
 To work around this, I've added a [string replacement in the Gitpod YAML file](https://github.com/pro-tailwind/course-multi-style-components/blob/main/.gitpod.yml#L9) that will convert a `+` symbol to a `/` in the parsed URL, effectively bypassing this issue.
 
 What that means is if you want to open a nested file by default for a given lesson, you'll need to pass the path with `+` instead of `/`, like so: `file=modal+index.tsx`.
+
+---
+
+### Variable values for lesson links
+
+Below is the environment variable data to generate Gitpod links for all lessons:
+
+```json
+{
+  "02-02-01": { "section": "button", "id": "02-02-01", "file": "button.tsx" },
+  "02-02-02": { "section": "button", "id": "02-02-02", "file": "button.tsx" },
+  "02-03-01": { "section": "button", "id": "02-03-01", "file": "button.tsx" },
+  "02-03-02": { "section": "button", "id": "02-03-02", "file": "button.tsx" },
+  "02-04-01": { "section": "button", "id": "02-04-01", "file": "button.tsx" },
+  "02-04-02": { "section": "button", "id": "02-04-02", "file": "button.tsx" },
+  "02-05-01": { "section": "button", "id": "02-05-01", "file": "button.tsx" },
+  "02-05-02": { "section": "button", "id": "02-05-02", "file": "button.tsx" },
+
+  "03-02-01": { "section": "modal", "id": "03-02-01", "file": "modal+modal.tsx" },
+  "03-02-02": { "section": "modal", "id": "03-02-02", "file": "modal+modal.tsx" },
+  "03-03-01": { "section": "modal", "id": "03-03-01", "file": "modal+modal.tsx" },
+  "03-03-02": { "section": "modal", "id": "03-03-02", "file": "modal+modal.tsx" },
+  "03-04-01": { "section": "modal", "id": "03-04-01", "file": "modal+modal.tsx" },
+  "03-04-02": { "section": "modal", "id": "03-04-02", "file": "modal+modal.tsx" },
+  "03-05-01": { "section": "modal", "id": "03-05-01", "file": "modal+modal.tsx" },
+  "03-05-02": { "section": "modal", "id": "03-05-02", "file": "modal+modal.tsx" },
+  "03-06-01": { "section": "modal", "id": "03-06-01", "file": "modal+modal.tsx" },
+  "03-06-02": { "section": "modal", "id": "03-06-02", "file": "modal+modal.tsx" },
+  "03-07-01": { "section": "modal", "id": "03-07-01", "file": "modal+modal.tsx" },
+  "03-07-02": { "section": "modal", "id": "03-07-02", "file": "modal+modal.tsx" },
+  "03-08-01": { "section": "modal", "id": "03-08-01", "file": "modal+modal.tsx" },
+  "03-08-02": { "section": "modal", "id": "03-08-02", "file": "modal+modal.tsx" },
+  "03-08-03": { "section": "modal", "id": "03-08-03", "file": "modal+modal.tsx" },
+  "03-09-01": { "section": "modal", "id": "03-09-01", "file": "modal+modal.tsx" },
+  "03-09-02": { "section": "modal", "id": "03-09-02", "file": "modal+modal.tsx" },
+  "03-10-01": { "section": "modal", "id": "03-10-01", "file": "modal+modal.tsx" },
+  "03-10-02": { "section": "modal", "id": "03-10-02", "file": "modal+modal.tsx" },
+
+  "04-02-01": { "section": "calendar-day", "id": "04-02-01", "file": "calendar+calendar-day.tsx" },
+  "04-02-02": { "section": "calendar-day", "id": "04-02-02", "file": "calendar+calendar-day.tsx" },
+  "04-03-01": { "section": "calendar-day", "id": "04-03-01", "file": "challenge.astro" },
+  "04-03-02": { "section": "calendar-day", "id": "04-03-02", "file": "challenge.astro" },
+  "04-04-01": { "section": "calendar-day", "id": "04-04-01", "file": "challenge+calendar-day.tsx" },
+  "04-04-02": { "section": "calendar-day", "id": "04-04-02", "file": "challenge+calendar-day.tsx" }
+}
+```

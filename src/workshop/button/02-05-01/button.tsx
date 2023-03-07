@@ -20,6 +20,15 @@ type ButtonProps = {
 const baseClasses =
   'font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50'
 
+/*
+  ------------------------------
+  1. Update the `impactClasses` lookup 
+  object below, to satisfy the new Type signature.
+
+  Make sure you also update how the `impactClasses` 
+  values are consumed in the `className` attribute...
+  ------------------------------
+*/
 const impactClasses: Record<ButtonProps['tone'], Record<ButtonProps['impact'], string>> = {
   bold: 'bg-indigo-500 text-white shadow-md hover:bg-indigo-600',
   light: 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200',

@@ -8,9 +8,6 @@ type ButtonProps = {
   impact?: 'bold' | 'light' | 'none'
   size?: 'small' | 'medium' | 'large'
   shape?: 'square' | 'rounded' | 'pill'
-  /*
-    Surprise! We've got an extra prop type now
-  */
   tone?: 'default' | 'danger' | 'success'
 }
 
