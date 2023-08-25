@@ -1,7 +1,22 @@
 {
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Classes"],
+  // Tailwind Intellisense power-up
+  
+  // Extend scope of supported attributes with `{anything}Classes`:
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Classes.*"],
+
+  // Regex black magic:
   "tailwindCSS.experimental.classRegex": [
-    // Support for the `cx()` function from classnames / clsx
-    ["cx\\(([^)]*)\\)", "(?:\"|'|`)([^(?:\"|'|`)]*)(?:\"|'|`)"]
+    
+    // tailwind-variants
+    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    
+    // CVA (with support for JSON)
+    ["cva(s*(\"[^\"]*\"|s*,s*|{(?:[^{}]|(?:{(?:[^{}]|(?:{[^{}]*}))*}))*}s*)*)"],
+    
+    // `cx()` function from classnames / clsx
+    ["cx\\(([^)]*)\\)", "(?:\"|'|`)([^(?:\"|'|`)]*)(?:\"|'|`)"],
+    
+    // Wrap style objects in `/*tw*/` before/after comments
+    ["/\\*tw\\*/ ([^]*) /\\*tw\\*/", "'([^']*)'"]
   ]
 }
